@@ -3,12 +3,12 @@ import { Optional } from '@/core/types/optional'
 import { Slug } from './value-objects/slug'
 import { UniqueEntityID } from './value-objects/unique-entity-id'
 
-interface QuestionProps {
+export interface QuestionProps {
   title: string
   content: string
   slug: Slug
   authorId: UniqueEntityID
-  bestAnswerId: UniqueEntityID
+  bestAnswerId?: UniqueEntityID
   createdAt: Date
   updatedAt?: Date
 }
@@ -31,7 +31,7 @@ export class Question extends Entity<QuestionProps> {
   }
 
   get bestAnswerId() {
-    return this.props.bestAnswerId
+    return this.props.bestAnswerId!
   }
 
   get createdAt() {
@@ -68,7 +68,7 @@ export class Question extends Entity<QuestionProps> {
 
   static create(
     props: Optional<QuestionProps, 'createdAt' | 'slug'>,
-    id: UniqueEntityID,
+    id?: UniqueEntityID,
   ) {
     const question = new Question(
       {

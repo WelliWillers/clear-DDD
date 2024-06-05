@@ -1,5 +1,5 @@
 import { Answer } from '@/domain/forum/enterprise/entities/answer'
-import { PaginationParams } from './pagination-params'
+import { PaginationParams } from '../../../../core/repositories/pagination-params'
 
 export interface AnswerRepository {
   save(answer: Answer): Promise<void>
